@@ -6,17 +6,17 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.map.repository.config.EnableMapRepositories;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
 import com.example.crud.model.Item;
+import com.example.crud.repositories.InMemoryItemRepository;
 
 @Service
-@EnableMapRepositories
+@EnableMapRepositories("com.example.crud.repositories")
 public class ItemService {
-    private final CrudRepository<Item, Long> repository;
+    private final InMemoryItemRepository repository;
 
-    public ItemService(CrudRepository<Item, Long> repository) {
+    public ItemService(InMemoryItemRepository repository) {
         this.repository = repository;
         this.repository.saveAll(defaultItems());
     }
